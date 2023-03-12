@@ -10,19 +10,24 @@
     body {
       margin: 0;
       padding: 0;
-      width: 100vw;
-      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-
     canvas {
       position: absolute;
     }
   </style>
 </head>
 <body>
-  <video id="video" width="720" height="560" autoplay muted></video>
+  <div id="buttons">
+    <button onclick="startVideo()" id="startVideo">Start Video</button>
+    <button onclick="stopVideo()" id="stopVideo">Stop Video</button><br>
+  </div>
+  <div>
+    <video id="video" width="720" height="560" autoplay muted></video>
+  </div>
+ 
 </body>
 </html>
