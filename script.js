@@ -6,6 +6,8 @@ const context = canvas.getContext("2d");
 let initOnce = false;
 let debugMode = false;
 let faceTracker; // Face Tracking
+const spiderman_image = new Image();
+spiderman_image.src = 'img/spiderman-mask.png';
 
 function startVideo() {
     hideElement("startVideo");
@@ -49,32 +51,29 @@ debugCb.addEventListener("change", () => {
     debugMode = !debugMode;
 });
 
-function myFunction() {
-  var x = document.getElementById("fname");
-  x.value = x.value.toUpperCase();
-}
-
 function initSetup(){
     initOnce = true;
     faceTracker = new clm.tracker();
     faceTracker.init();
-    // canvas.width = video.videoWidth;
-    // canvas.height = video.videoHeight;
 }
 
 function drawFaceDots(){
     clearCanvas();
     const positions = faceTracker.getCurrentPosition();
-    // ellipse(positions[i][0], positions[i][1], 5, 5);
-    for(var i=0;i<positions.length;i++){
-        context.fillStyle = "red";
-        context.fillRect(positions[i][0], positions[i][1], 2, 2);
-        if(debugMode){
-            context.fillStyle = "white";
-            context.font = "12px Arial";
-            context.fillText(i, positions[i][0], positions[i][1]);
+    if(positions.length>0){
+        for(var i=0;i<positions.length;i++){
+            context.fillStyle = "red";
+            context.fillRect(positions[i][0], positions[i][1], 2, 2);
+            if(debugMode){
+                context.fillStyle = "white";
+                context.font = "12px Arial";
+                context.fillText(i, positions[i][0], positions[i][1]);
+            }
         }
+        // TODO: get spiderman mask to scale on the face
+        // context.drawImage(spiderman_image, 0, 0, 100,100, positions[27][0], positions[27][1],100,100);
     }
+
     if(video.srcObject){
         setTimeout(drawFaceDots, 100);
     }
