@@ -1,4 +1,4 @@
-console.log('FT Online');
+console.log('FT Online!');
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const debugCb = document.getElementById('debugCb');
