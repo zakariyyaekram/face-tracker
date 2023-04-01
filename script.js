@@ -51,6 +51,8 @@ debugCb.addEventListener("change", () => {
     debugMode = !debugMode;
     if(!video.srcObject){
         console.log("no signal!")
+    }else{
+
     }
 });
 
@@ -63,6 +65,7 @@ function initSetup(){
 function drawFaceDots(){
     clearCanvas();
     const positions = faceTracker.getCurrentPosition();
+    console.log(positions);
     if(positions.length>0){
         for(var i=0;i<positions.length;i++){
             context.fillStyle = "red";
