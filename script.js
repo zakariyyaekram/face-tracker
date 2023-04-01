@@ -49,6 +49,9 @@ video.addEventListener('play', () => {
 debugCb.addEventListener("change", () => {
     console.log(new Date(), "Debug Clicked");
     debugMode = !debugMode;
+    if(!video.srcObject){
+        console.log("no signal!")
+    }
 });
 
 function initSetup(){
