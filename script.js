@@ -74,7 +74,7 @@ function drawMyFace(){
 }
 
 function setMyFaceScore(){
-  const score = getFTScore(); 
+  const score = faceTracker.getScore() * 100; 
   scoreEl.innerText = Math.round(score);
 }
 
