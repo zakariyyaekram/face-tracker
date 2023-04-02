@@ -87,7 +87,7 @@ function drawMyFaceDots(positions){
   for(let i=0;i<positions.length;i++){
     const posX = positions[i][0];
     const posY = positions[i][1];
-    drawCircle(posX, posY);
+    drawCircle(posX, posY, '#0000FF');
     // draw the dot with drawCircle
     if(debugMode){
         // write the dot label on the screen with drawText
