@@ -90,6 +90,7 @@ function startFT(){
  * @returns array of positions
  */
 function getFTPositions(){
+    if(!isVideoStarted()) return [];
     return faceTracker.getCurrentPosition();
 }
 
@@ -98,7 +99,16 @@ function getFTPositions(){
  * @returns number - score of face detection from 0 - 100
  */
 function getFTScore(){
+    if(!isVideoStarted()) return 0;
     return faceTracker.getScore() * 100;
+}
+
+/**
+ * Gets the dot connections for the clmtrackr face model
+ * @returns array - connections between two dots in the model
+ */
+function getFTModelDotConnections(){
+    return [...modelMapDotConnections];
 }
 
 // Face Tracker Internals
@@ -143,7 +153,7 @@ function drawCircle(x, y, color, size){
  * @param x - X coordinate of the text
  * @param y - Y coordinate of the text
  * @param color - (optional) color of the text, default 'blue'
- * @param size - (optional) size of the circle, default 12
+ * @param size - (optional) size of the font, default 12
  */
 function drawText(text, x, y, color, size){
     if(!color) color = 'blue';
@@ -151,6 +161,23 @@ function drawText(text, x, y, color, size){
     context.fillStyle = color;
     context.font = size+"px Arial";
     context.fillText(text, x, y);
+}
+
+/**
+ * Draw line at x1,y1 to x2,y2 of some color
+ * @param x1 - X1 coordinate of the text
+ * @param y1 - Y1 coordinate of the text
+ * @param x2 - X2 coordinate of the text
+ * @param y2 - Y2 coordinate of the text
+ * @param color - (optional) color of the line, default 'green'
+ */
+function drawLine(x1, y1, x2, y2, color){
+    if(!color) color = 'green';
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.strokeStyle = color;
+    context.stroke();
 }
 
 /**
