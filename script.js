@@ -33,7 +33,7 @@ function playMyVideo(){
     console.log("Now playing webcam...");
 
     // Start Facetracker
-    //startFT();
+  startFT();
 
     // Draw my face
     drawMyFace();
