@@ -9,17 +9,19 @@ console.log('FT Online!');
 stopMyVideo();
 
 function startMyVideo() {
-    hideElement("startVideo");
-    showElement("stopVideo");
-    showElement("debug");
+    // Setup element show hide states
+    // hideElement("startVideo");
+    // showElement("stopVideo");
+    // showElement("debug");
     // Call helper library to start webcam
     //startVideo();
 }
 
 function stopMyVideo() {
-    showElement("startVideo");
-    hideElement("stopVideo");
-    hideElement("debug");
+    // Setup element show hide states
+    // showElement("startVideo");
+    // hideElement("stopVideo");
+    // hideElement("debug");
     // Call helper library to stop webcam
     //stopVideo();
     mockMode = false;
