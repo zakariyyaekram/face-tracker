@@ -90,6 +90,7 @@ function drawMyFaceDots(positions){
     drawCircle(posX, posY, '#0000FF');
     // draw the dot with drawCircle
     if(debugMode){
+      drawText(i);
         // write the dot label on the screen with drawText
     }
   }
