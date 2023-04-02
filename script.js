@@ -12,14 +12,16 @@ function startMyVideo() {
     hideElement("startVideo");
     showElement("stopVideo");
     showElement("debug");
-    startVideo();
+    // Call helper library to start webcam
+    //startVideo();
 }
 
 function stopMyVideo() {
     showElement("startVideo");
     hideElement("stopVideo");
     hideElement("debug");
-    stopVideo();
+    // Call helper library to stop webcam
+    //stopVideo();
     mockMode = false;
 }
 
@@ -27,7 +29,11 @@ registerVideoPlay(playMyVideo);
 
 function playMyVideo(){
     console.log("Now playing webcam...");
-    startFT();
+
+    // Start Facetracker
+    //startFT();
+
+    // Draw my face
     drawMyFace();
 }
 
@@ -66,7 +72,7 @@ function drawMyFace(){
 }
 
 function setMyFaceScore(){
-  const score = getFTScore();
+  const score = 0; /*getFTScore();*/
   scoreEl.innerText = Math.round(score);
 }
 
@@ -75,17 +81,14 @@ function setMyFaceScore(){
  * @param positions - array of face positions
  */
 function drawMyFaceDots(positions){
+  // loop through all dots to draw the face
   for(let i=0;i<positions.length;i++){
     const posX = positions[i][0];
     const posY = positions[i][1];
-    drawCircle(posX, posY);
+    // draw the dot with drawCircle
     if(debugMode){
-          if(mockMode){
-            drawText(i,posX, posY);                  
-          }else{
-            drawText(i,posX, posY,'white');
-          }
-      }
+        // write the dot label on the screen with drawText
+    }
   }
 }
 
@@ -97,12 +100,6 @@ function drawMyFaceLine(positions){
   const dots = getFTModelDotConnections()
   while(dots.length>0){
     const dotPosition = dots.pop();
-    const dotStart = dotPosition[0];
-    const dotEnd = dotPosition[1];
-    const dotStartX = positions[dotStart][0];
-    const dotStartY = positions[dotStart][1];
-    const dotEndX = positions[dotEnd][0];
-    const dotEndY = positions[dotEnd][1];
-    drawLine(dotStartX, dotStartY, dotEndX, dotEndY);
+    // connect the dots positions with drawLine
   }
 }
