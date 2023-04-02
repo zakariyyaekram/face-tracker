@@ -10,18 +10,18 @@ stopMyVideo();
 
 function startMyVideo() {
     // Setup element show hide states
-    // hideElement("startVideo");
-    // showElement("stopVideo");
-    // showElement("debug");
+     hideElement("startVideo");
+     showElement("stopVideo");
+     showElement("debug");
     // Call helper library to start webcam
     //startVideo();
 }
 
 function stopMyVideo() {
     // Setup element show hide states
-    // showElement("startVideo");
-    // hideElement("stopVideo");
-    // hideElement("debug");
+    showElement("startVideo");
+    hideElement("stopVideo");
+    hideElement("debug");
     // Call helper library to stop webcam
     //stopVideo();
     mockMode = false;
