@@ -1,4 +1,11 @@
+const scoreEl = document.getElementById('score');
+
+let debugMode = false;
+let mockMode = false;
+
 console.log('FT Online!');
+
+stopMyVideo();
 
 function startMyVideo() {
     hideElement("startVideo");
@@ -14,47 +21,48 @@ function stopMyVideo() {
     stopVideo();
 }
 
-video.addEventListener('play', () => {
-    console.log(new Date(), "Now playing webcam...");
-    if(!initOnce){
-        initSetup();
-    }
-    faceTracker.start(video);
-    drawFaceDots();
-});
+registerVideoPlay(playMyVideo);
 
-debugCb.addEventListener("change", () => {
-    console.log(new Date(), "Debug Clicked");
-    debugMode = !debugMode;
-    if(!video.srcObject){
-        console.log("no signal!");
-        mockMode = true;
-        drawFaceDots();
-    }
-});
+function playMyVideo(){
+    console.log("Now playing webcam...");
+    startFT();
+    drawMyFaceDots();
+}
 
-function drawFaceDots(){
+function debugMyApp(){
+  debugMode = !debugMode;
+  if(!isVideoStarted()){
+      console.log("no signal :(");
+      mockMode = true;
+      drawMyFaceDots();
+  }
+}
+
+function drawMyFaceDots(){
     clearCanvas();
     let positions = [];
+    let score = 0;
     if(mockMode){
-        positions = mockFacePositions;
+      positions = mockFacePositions;
     }else{
-        positions = faceTracker.getCurrentPosition();
+      positions = getFTPositions();
+      score = getFTScore();
     }
-    
+    scoreEl.innerText = Math.round(score);
     if(positions.length>0){
         for(var i=0;i<positions.length;i++){
-            context.fillStyle = "red";
-            context.fillRect(positions[i][0], positions[i][1], 2, 2);
+            drawCircle(positions[i][0], positions[i][1]);
             if(debugMode){
-                context.fillStyle = "blue";
-                context.font = "12px Arial";
-                context.fillText(i, positions[i][0], positions[i][1]);
+                if(mockMode){
+                  drawText(i,positions[i][0], positions[i][1]);                  
+                }else{
+                  drawText(i,positions[i][0], positions[i][1],'white');
+                }
             }
         }
     }
 
-    if(video.srcObject || mockMode){
-        setTimeout(drawFaceDots, 100);
+    if(isVideoStarted() || mockMode){
+        setTimeout(drawMyFaceDots, 100);
     }
 }
